@@ -183,7 +183,7 @@ function M.get_file_icon(filename, filetype)
   end
 
   local basename_extension = file_extension(basename)
-  local highlight = string.format("barbecue_fileicon_%s", basename_extension)
+  local highlight = string.format("barbecue_fileicon_%s", icon.name)
   local cached_icon = file_icons[basename_extension]
   if cached_icon == nil or cached_icon.color ~= icon.color then
     file_icons[basename_extension] = {
@@ -197,7 +197,7 @@ function M.get_file_icon(filename, filetype)
       vim.tbl_extend(
         "force",
         current_theme ~= nil and current_theme.normal or {},
-        { foreground = basename_extension }
+        { foreground = icon_color or icon.color }
       )
     )
   end
