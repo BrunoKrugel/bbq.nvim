@@ -357,6 +357,11 @@ you've seen in the select menu of raw `:Barbecue`.
   ---@type boolean
   context_follow_icon_color = false,
 
+  ---Whether to show diagnostics indicator
+  ---
+  ---@type boolean
+  show_diagnostics = false,
+
   symbols = {
     ---Modification indicator.
     ---
