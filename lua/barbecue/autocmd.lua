@@ -44,6 +44,10 @@ function M.create_updater()
   })
 end
 
+if config.user.show_basename and config.user.show_diagnostics then
+  table.insert(events, "DiagnosticChanged")
+end
+
 ---Keep the theme in sync with the current colorscheme.
 function M.create_colorscheme_synchronizer()
   vim.api.nvim_create_autocmd("ColorScheme", {

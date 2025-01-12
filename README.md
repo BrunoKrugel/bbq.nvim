@@ -177,6 +177,7 @@ you've seen in the select menu of raw `:Barbecue`.
       ellipsis = { fg = "#737aa2" },
       separator = { fg = "#737aa2" },
       modified = { fg = "#737aa2" },
+      diagnostics = { fg = "#ff0000" },
 
       -- these highlights represent the _text_ of three main parts of barbecue
       dirname = { fg = "#737aa2" },
