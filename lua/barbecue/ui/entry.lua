@@ -106,7 +106,7 @@ function Entry:to_string()
       "%%#%s#%s",
       self.modified.highlight,
       utils.str_escape(self.modified[1])
-    ) .. " "
+    )
   )
 
   local to = (self.to == nil and "" or "%X")
