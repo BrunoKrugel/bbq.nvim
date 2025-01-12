@@ -48,6 +48,16 @@ M.highlights = {
   context_type_parameter = "barbecue_context_type_parameter",
 }
 
+local file_extension = function(filename)
+  local parts = vim.split(filename, "%.")
+  -- this check enables us to get multi-part extensions, like *.test.js for example
+  if #parts > 2 then
+    return table.concat(vim.list_slice(parts, #parts - 1), ".")
+  else
+    return table.concat(vim.list_slice(parts, #parts), ".")
+  end
+end
+
 ---@type { highlight: string, color: string }[]
 local file_icons = {}
 
@@ -159,6 +169,8 @@ function M.get_file_icon(filename, filetype)
   local basename = vim.fn.fnamemodify(filename, ":t")
   local extension = string.match(basename, "%.(.*)")
 
+  local icon_text, icon_color = devicons.get_icon_color(basename, file_extension(basename), { default = false })
+
   local icons = devicons.get_icons()
   local icon = icons[basename] or icons[extension]
   if icon == nil then
@@ -167,10 +179,11 @@ function M.get_file_icon(filename, filetype)
     if icon == nil then return nil end
   end
 
-  local highlight = string.format("barbecue_fileicon_%s", icon.name)
-  local cached_icon = file_icons[icon.name]
+  local basename_extension = file_extension(basename)
+  local highlight = string.format("barbecue_fileicon_%s", basename_extension)
+  local cached_icon = file_icons[basename_extension]
   if cached_icon == nil or cached_icon.color ~= icon.color then
-    file_icons[icon.name] = {
+    file_icons[basename_extension] = {
       highlight = highlight,
       color = icon.color,
     }
@@ -181,13 +194,13 @@ function M.get_file_icon(filename, filetype)
       vim.tbl_extend(
         "force",
         current_theme ~= nil and current_theme.normal or {},
-        { foreground = icon.color }
+        { foreground = icon_color or icon.color }
       )
     )
   end
 
   return {
-    icon.icon,
+    icon_text or icon.icon,
     highlight = highlight,
   }
 end
