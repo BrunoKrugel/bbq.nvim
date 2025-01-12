@@ -76,11 +76,11 @@ function M.basename(winnr, bufnr)
   local basename =
     vim.fn.fnamemodify(filename, config.user.modifiers.basename .. ":t")
 
-  if basename == "" then return nil end
+  local icon = theme.get_file_icon(filename, vim.bo[bufnr].filetype)
 
   local icon
   if config.user.show_modified and config.user.modified(bufnr) then
-    icon = {
+    modified = {
       config.user.symbols.modified,
       highlight = theme.highlights.modified,
     }
@@ -104,7 +104,8 @@ function M.basename(winnr, bufnr)
     {
       win = winnr,
       pos = { 1, 0 },
-    }
+    },
+    modified
   )
 end
 

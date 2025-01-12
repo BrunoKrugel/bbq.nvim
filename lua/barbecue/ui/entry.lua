@@ -5,11 +5,13 @@ local theme = require("barbecue.theme")
 ---@alias barbecue.Entry.text { [1]: string, highlight: string }
 ---@alias barbecue.Entry.icon { [1]: string, highlight: string }
 ---@alias barbecue.Entry.to { win: number, pos: { [1]: number, [2]: number } }
+---@alias barbecue.Entry.modified { [1]: string, highlight: string }
 
 ---@class barbecue.Entry
 ---@field public text barbecue.Entry.text Text to be displayed inside the entry.
 ---@field public icon barbecue.Entry.icon|nil Icon to be displayed right before the text.
 ---@field public to barbecue.Entry.to|nil Link to a position of a window.
+---@field public modified barbecue.Entry.modified|nil Modified symbol to be displayed after the text.
 local Entry = {}
 Entry.__index = Entry
 
@@ -18,13 +20,15 @@ Entry.__index = Entry
 ---@param text barbecue.Entry.text Text to be displayed inside the entry.
 ---@param icon barbecue.Entry.icon? Icon to be displayed right before the text.
 ---@param to barbecue.Entry.to? Link to a position of a window.
+---@param modified barbecue.Entry.modified? Modified symbol to be displayed after the text.
 ---@return barbecue.Entry
-function Entry.new(text, icon, to)
+function Entry.new(text, icon, to, modified)
   local instance = setmetatable({}, Entry)
 
   instance.text = text
   instance.icon = icon
   instance.to = to
+  instance.modified = modified
 
   return instance
 end
@@ -96,12 +100,21 @@ function Entry:to_string()
     utils.str_escape(self.text[1])
   )
 
+  local modified = (
+    self.modified == nil and ""
+    or string.format(
+      "%%#%s#%s",
+      self.modified.highlight,
+      utils.str_escape(self.modified[1])
+    )
+  )
+
   local to = (self.to == nil and "" or "%X")
 
   if config.user.icon_position == "after" then
-    return (mouse .. text .. icon .. to)
+    return (mouse .. text .. modified .. icon .. to)
   else
-    return (mouse .. icon .. text .. to)
+    return (mouse .. modified .. icon .. text .. to)
   end
 end
 
