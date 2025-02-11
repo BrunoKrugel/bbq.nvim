@@ -1,6 +1,6 @@
 <div align="center">
 
-# barbecue.nvim
+# Updated fork of barbecue.nvim
 
 This is a VS Code like winbar that uses [nvim-navic][nvim-navic] in order to get
 LSP context from your language server.
