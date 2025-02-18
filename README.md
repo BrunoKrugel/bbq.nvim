@@ -42,7 +42,7 @@ https://user-images.githubusercontent.com/37078297/215765075-bc89050e-ad74-481a-
 
   ```lua
   {
-    "utilyre/barbecue.nvim",
+    "BrunoKrugel/bbq.nvim",
     name = "barbecue",
     version = "*",
     dependencies = {
@@ -59,7 +59,7 @@ https://user-images.githubusercontent.com/37078297/215765075-bc89050e-ad74-481a-
 
   ```lua
   use({
-    "utilyre/barbecue.nvim",
+    "BrunoKrugel/bbq.nvim",
     tag = "*",
     requires = {
       "SmiteshP/nvim-navic",
@@ -127,9 +127,9 @@ you've seen in the select menu of raw `:Barbecue`.
   ```
 
 [installation]: #-installation
-[toggle]: https://github.com/utilyre/barbecue.nvim/blob/v1.2.0/lua/barbecue/ui.lua#L232-L242
-[update]: https://github.com/utilyre/barbecue.nvim/blob/v1.2.0/lua/barbecue/ui.lua#L168-L230
-[navigate]: https://github.com/utilyre/barbecue.nvim/blob/v1.2.0/lua/barbecue/ui.lua#L244-L267
+[toggle]: https://github.com/BrunoKrugel/bbq.nvim/blob/v1.2.0/lua/barbecue/ui.lua#L232-L242
+[update]: https://github.com/BrunoKrugel/bbq.nvim/blob/v1.2.0/lua/barbecue/ui.lua#L168-L230
+[navigate]: https://github.com/BrunoKrugel/bbq.nvim/blob/v1.2.0/lua/barbecue/ui.lua#L244-L267
 
 ## 🍴 Recipes
 
@@ -239,7 +239,7 @@ you've seen in the select menu of raw `:Barbecue`.
   })
   ```
 
-[#35]: https://github.com/utilyre/barbecue.nvim/issues/35
+[#35]: https://github.com/BrunoKrugel/bbq.nvim/issues/35
 
 ## 🚠 Configuration
 
@@ -423,4 +423,4 @@ you've seen in the select menu of raw `:Barbecue`.
 
 See [CONTRIBUTING.md][contributing].
 
-[contributing]: https://github.com/utilyre/barbecue.nvim/blob/main/CONTRIBUTING.md
+[contributing]: https://github.com/BrunoKrugel/bbq.nvim/blob/main/CONTRIBUTING.md
